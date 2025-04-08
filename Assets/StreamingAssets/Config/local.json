@@ -1,0 +1,38 @@
+{
+    "Russian": [
+        {
+            "Tag": "PLAY_BTN",
+            "Value": "Играть"
+        },
+        {
+            "Tag": "EDITOR_BTN",
+            "Value": "Редактор уровней"
+        },
+        {
+            "Tag": "STORE_TTL",
+            "Value": "Магазин"
+        },
+        {
+            "Tag": "ENVIRONMENT_TTL",
+            "Value": "Обои"
+        }
+    ],
+    "English": [
+        {
+            "Tag": "PLAY_BTN",
+            "Value": "Play"
+        },
+        {
+            "Tag": "EDITOR_BTN",
+            "Value": "Level editor"
+        },
+        {
+            "Tag": "STORE_TTL",
+            "Value": "Store"
+        },
+        {
+            "Tag": "ENVIRONMENT_TTL",
+            "Value": "Background"
+        }
+    ]
+}

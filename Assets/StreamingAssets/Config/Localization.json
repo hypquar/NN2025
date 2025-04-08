@@ -1,0 +1,110 @@
+{
+    "English": [
+        {
+            "Tag": "play",
+            "Value": "PLAY"
+        },
+        {
+            "Tag": "editor",
+            "Value": "LEVEL EDITOR"
+        },
+        {
+            "Tag": "settings",
+            "Value": "Settings"
+        },
+        {
+            "Tag": "screenSetting",
+            "Value": "Screen Resolution"
+        },
+        {
+            "Tag": "windowSetting",
+            "Value": "Window Mode"
+        },
+        {
+            "Tag": "soundsSetting",
+            "Value": "Sound & music"
+        },
+        {
+            "Tag": "languageSetting",
+            "Value": "Language"
+        },
+        {
+            "Tag": "restore",
+            "Value": "Restore settings"
+        },
+        {
+            "Tag": "saveSettings",
+            "Value": "Save settings?"
+        },
+        {
+            "Tag": "applyText",
+            "Value": "YES"
+        },
+        {
+            "Tag": "denyText",
+            "Value": "NO"
+        },
+        {
+            "Tag": "shop",
+            "Value": "Store"
+        },
+        {
+            "Tag": "environment",
+            "Value": "Environment"
+        }
+    ],
+    "Russian": [
+        {
+            "Tag": "play",
+            "Value": "ИГРАТЬ"
+        },
+        {
+            "Tag": "editor",
+            "Value": "РЕДАКТОР УРОВНЕЙ"
+        },
+        {
+            "Tag": "settings",
+            "Value": "Настройки"
+        },
+        {
+            "Tag": "screenSetting",
+            "Value": "Разрешение экрана"
+        },
+        {
+            "Tag": "windowSetting",
+            "Value": "Оконный режим"
+        },
+        {
+            "Tag": "soundsSetting",
+            "Value": "Звуки и музыка"
+        },
+        {
+            "Tag": "languageSetting",
+            "Value": "Язык"
+        },
+        {
+            "Tag": "restore",
+            "Value": "Восстановить настройки"
+        },
+        {
+            "Tag": "saveSettings",
+            "Value": "Сохранить настройки?"
+        },
+        {
+            "Tag": "applyText",
+            "Value": "ДА"
+        },
+        {
+            "Tag": "denyText",
+            "Value": "НЕТ"
+        },
+        {
+            "Tag": "shop",
+            "Value": "Магазин"
+        },
+        {
+            "Tag": "environment",
+            "Value": "Фон"
+        }
+    ]
+}
