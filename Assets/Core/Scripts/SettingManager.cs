@@ -1,4 +1,5 @@
 using Assembly_CSharp;
+using Core;
 using UnityEngine;
 
 public class SettingManager : MonoBehaviour
@@ -13,10 +14,9 @@ public class SettingManager : MonoBehaviour
     }
     void Start()
     {
-        foreach (ISetting setting in settings)
-        {
-            setting.SaveSetting(userSettingsData);
-        }
+        //basicSettingsData = DataManager.Instance.baseSettingsData;
+        //userSettingsData = DataManager.Instance.userSettingsData;
+        Apply();
     }
     public void Restore()
     {

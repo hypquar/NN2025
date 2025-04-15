@@ -12,7 +12,7 @@ public class LanguageManager : MonoBehaviour, ISetting
 
     string localizationJson = File.ReadAllText(Path.Combine(Application.streamingAssetsPath, "Config", "Localization.json"), Encoding.UTF8);
     [SerializeField] TMP_Dropdown dropdown;
-    LocalizationDictionary localizationDictionary = new LocalizationDictionary();
+    public LocalizationDictionary localizationDictionary = new LocalizationDictionary();
     Dictionary<string, string> currentLocalization = new Dictionary<string, string>();
 
     private void Awake()

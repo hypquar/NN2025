@@ -14,7 +14,7 @@ public class ResolutionManager : MonoBehaviour, ISetting
         settingsData.Resolution = resolutionDropdown.options[resolutionDropdown.value].text;
     }
     public void LoadSetting(SettingsData settingsData)
-    {
+     {
         for (int i = 0; i < resolutionDropdown.options.Count; i++)
         {
             if (resolutionDropdown.options[i].text == settingsData.Resolution)

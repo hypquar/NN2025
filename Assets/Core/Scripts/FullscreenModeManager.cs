@@ -14,7 +14,7 @@ public class FullscreenModeManager : MonoBehaviour, ISetting
     }
     public void LoadSetting(SettingsData settingsData)
     {
-        toggle.enabled = settingsData.IsWindowed;
+        toggle.isOn = settingsData.IsWindowed;
         ChangeFullscreenMode(settingsData.IsWindowed);
     }
     public void ChangeFullscreenMode(bool IsWindowed)
