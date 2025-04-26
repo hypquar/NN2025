@@ -2,6 +2,7 @@ using Assembly_CSharp;
 using System.IO;
 using System.Text;
 using UnityEngine;
+using YG;
 
 namespace Core
 {
@@ -18,36 +19,72 @@ namespace Core
         private void Awake()
         {
             Instance = this;
+
+            // Подписываемся на событие загрузки данных
+            YandexGame.LoadProgress();
+            YandexGame.GetDataEvent += OnDataLoaded;
+
+            // Загружаем базовые настройки (они не зависят от пользователя)
             LoadSettingsData(baseSettingsData, configPath);
-            LoadSettingsData(userSettingsData, configPath);
-            LoadUserData(userData, configPath);
             LoadLanguagesData();
         }
 
-        private void Start()
+        private void OnDataLoaded()
         {
-            LoadSettingsData(baseSettingsData, configPath);
-            LoadSettingsData(userSettingsData, configPath);
-            LoadUserData(userData, configPath);
-            LoadLanguagesData();
+            // Загружаем пользовательские данные из YandexGame.savesData
+            if (YandexGame.savesData.userSettingsJson != null)
+            {
+                JsonUtility.FromJsonOverwrite(YandexGame.savesData.userSettingsJson, userSettingsData);
+            }
+            else
+            {
+                // Если сохранений нет, загружаем базовые настройки
+                LoadSettingsData(userSettingsData, configPath);
+            }
+
+            if (YandexGame.savesData.userDataJson != null)
+            {
+                JsonUtility.FromJsonOverwrite(YandexGame.savesData.userDataJson, userData);
+            }
+            else
+            {
+                // Если сохранений нет, загружаем начальные данные
+                LoadUserData(userData, configPath);
+            }
+        }
+
+        private void OnDestroy()
+        {
+            // Отписываемся от события при уничтожении объекта
+            YandexGame.GetDataEvent -= OnDataLoaded;
         }
 
         public void SaveUserSettings()
         {
-            SaveSettingsData(userSettingsData, configPath);
+            SaveSettingsData(userSettingsData);
         }
 
         private void OnApplicationQuit()
         {
             SaveSettingsData(baseSettingsData, configPath);
-            SaveSettingsData(userSettingsData, configPath);
-            SaveUserData(userData, configPath);
+            SaveSettingsData(userSettingsData);
+            SaveUserData(userData);
         }
 
         [ContextMenu("Save settings data")]
-        public void SaveSettingsData(SettingsData data, string path)
+        public void SaveSettingsData(SettingsData data, string path = null)
         {
-            data.SaveToJson(path);
+            if (path != null)
+            {
+                // Сохраняем в файл (для базовых настроек)
+                data.SaveToJson(path);
+            }
+            else
+            {
+                // Сохраняем в облако Яндекс Игр (для пользовательских настроек)
+                YandexGame.savesData.userSettingsJson = JsonUtility.ToJson(data);
+                YandexGame.SaveProgress();
+            }
         }
 
         [ContextMenu("Load settings data")]
@@ -57,17 +94,27 @@ namespace Core
         }
 
         [ContextMenu("Save user data")]
-        public void SaveUserData(UserData data, string path)
+        public void SaveUserData(UserData data, string path = null)
         {
-            string json = JsonUtility.ToJson(data);
-            if (File.Exists(Path.Combine(path, $"{data.name}.json")))
+            if (path != null)
             {
-                File.WriteAllText(Path.Combine(path, $"{data.name}.json"), json);
+                // Сохраняю в файл (для начальных данных)
+                string json = JsonUtility.ToJson(data);
+                if (File.Exists(Path.Combine(path, $"{data.name}.json")))
+                {
+                    File.WriteAllText(Path.Combine(path, $"{data.name}.json"), json);
+                }
+                else
+                {
+                    File.Create(Path.Combine(path, $"{data.name}.json"));
+                    File.WriteAllText(Path.Combine(path, $"{data.name}.json"), json);
+                }
             }
             else
             {
-                File.Create(Path.Combine(path, $"{data.name}.json"));
-                File.WriteAllText(Path.Combine(path, $"{data.name}.json"), json);
+                // Сохраняю в облако Яндекс Игр
+                YandexGame.savesData.userDataJson = JsonUtility.ToJson(data);
+                YandexGame.SaveProgress();
             }
         }
 
