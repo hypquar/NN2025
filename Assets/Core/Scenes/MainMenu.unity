@@ -4203,7 +4203,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &513437777
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5583,7 +5583,6 @@ MonoBehaviour:
   baseSettingsData: {fileID: 11400000, guid: 4298010964f77a64581fdba28c5dd8f4, type: 2}
   userData: {fileID: 11400000, guid: 2b4e052a37a4f174eb3e6b68af3777d6, type: 2}
   languageManager: {fileID: 644909252}
-  configPath: C:/Users/nikah/Documents/GitHub/NN2025/Assets/StreamingAssets\Config
 --- !u!4 &657386481
 Transform:
   m_ObjectHideFlags: 0
@@ -5949,7 +5948,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &705540317
 MonoBehaviour:
   m_ObjectHideFlags: 0

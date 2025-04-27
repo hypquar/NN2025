@@ -1,6 +1,6 @@
-using Assembly_CSharp;
 using System.IO;
 using System.Text;
+using Assembly_CSharp;
 using UnityEngine;
 using YG;
 
@@ -12,51 +12,72 @@ namespace Core
         public SettingsData baseSettingsData;
         public UserData userData;
         [SerializeField] LanguageManager languageManager;
-        [SerializeField] string configPath = Path.Combine(Application.streamingAssetsPath, "Config");
+        private string configPath;
 
         public static DataManager Instance { get; set; }
 
         private void Awake()
         {
             Instance = this;
+            configPath = Path.Combine(Application.persistentDataPath, "Config");
 
-            // Подписываемся на событие загрузки данных
-            YandexGame.LoadProgress();
-            YandexGame.GetDataEvent += OnDataLoaded;
+            // Создаем папку если не существует
+            if (!Directory.Exists(configPath))
+            {
+                Directory.CreateDirectory(configPath);
+            }
 
-            // Загружаем базовые настройки (они не зависят от пользователя)
+            // Загружаем базовые настройки
             LoadSettingsData(baseSettingsData, configPath);
             LoadLanguagesData();
+
+            // Подписываемся на событие загрузки данных
+            YandexGame.GetDataEvent += OnDataLoaded;
+
+            // Если SDK уже загружен, вызываем вручную
+            if (YandexGame.SDKEnabled)
+            {
+                OnDataLoaded();
+            }
+            else
+            {
+                YandexGame.LoadProgress();
+            }
+        }
+
+        public void Start()
+        {
+            // Для теста 
+            if (!YandexGame.SDKEnabled)
+            {
+                userSettingsData.SetDefaultValues();
+                userData.ResetData();
+                Debug.Assert(userSettingsData != null, "UserSettingsData is not assigned in DataManager.");
+            }
         }
 
         private void OnDataLoaded()
         {
-            // Загружаем пользовательские данные из YandexGame.savesData
-            if (YandexGame.savesData.userSettingsJson != null)
+            // Загружаем пользовательские данные
+            if (!string.IsNullOrEmpty(YandexGame.savesData.userSettingsJson))
             {
                 JsonUtility.FromJsonOverwrite(YandexGame.savesData.userSettingsJson, userSettingsData);
             }
             else
             {
-                // Если сохранений нет, загружаем базовые настройки
-                LoadSettingsData(userSettingsData, configPath);
+                userSettingsData.SetDefaultValues();
+                SaveSettingsData(userSettingsData);
             }
 
-            if (YandexGame.savesData.userDataJson != null)
+            if (!string.IsNullOrEmpty(YandexGame.savesData.userDataJson))
             {
                 JsonUtility.FromJsonOverwrite(YandexGame.savesData.userDataJson, userData);
             }
             else
             {
-                // Если сохранений нет, загружаем начальные данные
-                LoadUserData(userData, configPath);
+                userData.ResetData();
+                SaveUserData(userData);
             }
-        }
-
-        private void OnDestroy()
-        {
-            // Отписываемся от события при уничтожении объекта
-            YandexGame.GetDataEvent -= OnDataLoaded;
         }
 
         public void SaveUserSettings()
@@ -64,80 +85,72 @@ namespace Core
             SaveSettingsData(userSettingsData);
         }
 
-        private void OnApplicationQuit()
-        {
-            SaveSettingsData(baseSettingsData, configPath);
-            SaveSettingsData(userSettingsData);
-            SaveUserData(userData);
-        }
-
-        [ContextMenu("Save settings data")]
         public void SaveSettingsData(SettingsData data, string path = null)
         {
             if (path != null)
             {
-                // Сохраняем в файл (для базовых настроек)
                 data.SaveToJson(path);
             }
             else
             {
-                // Сохраняем в облако Яндекс Игр (для пользовательских настроек)
                 YandexGame.savesData.userSettingsJson = JsonUtility.ToJson(data);
                 YandexGame.SaveProgress();
             }
         }
 
-        [ContextMenu("Load settings data")]
         public void LoadSettingsData(SettingsData data, string path)
         {
             data.LoadToJson(path);
         }
 
-        [ContextMenu("Save user data")]
         public void SaveUserData(UserData data, string path = null)
         {
             if (path != null)
             {
-                // Сохраняю в файл (для начальных данных)
                 string json = JsonUtility.ToJson(data);
-                if (File.Exists(Path.Combine(path, $"{data.name}.json")))
-                {
-                    File.WriteAllText(Path.Combine(path, $"{data.name}.json"), json);
-                }
-                else
-                {
-                    File.Create(Path.Combine(path, $"{data.name}.json"));
-                    File.WriteAllText(Path.Combine(path, $"{data.name}.json"), json);
-                }
+                string filePath = Path.Combine(path, $"{data.name}.json");
+                File.WriteAllText(filePath, json);
             }
             else
             {
-                // Сохраняю в облако Яндекс Игр
                 YandexGame.savesData.userDataJson = JsonUtility.ToJson(data);
                 YandexGame.SaveProgress();
             }
         }
 
-        [ContextMenu("Load user data")]
         public void LoadUserData(UserData data, string path)
         {
-            string json;
-            if (File.Exists(Path.Combine(path, $"{data.name}.json")))
+            string filePath = Path.Combine(path, $"{data.name}.json");
+            if (File.Exists(filePath))
             {
-                json = File.ReadAllText(Path.Combine(path, $"{data.name}.json"));
+                string json = File.ReadAllText(filePath);
+                JsonUtility.FromJsonOverwrite(json, data);
             }
             else
             {
+                data.ResetData();
                 SaveUserData(data, path);
-                json = File.ReadAllText(Path.Combine(path, $"{data.name}.json"));
             }
-            JsonUtility.FromJsonOverwrite(json, data);
         }
 
         private void LoadLanguagesData()
         {
-            string localizationJson = File.ReadAllText(Path.Combine(configPath, "Localization.json"), Encoding.UTF8);
-            languageManager.localizationDictionary = JsonUtility.FromJson<LocalizationDictionary>(localizationJson);
+            string localizationPath = Path.Combine(Application.streamingAssetsPath, "config", "Localization.json"); 
+            if (File.Exists(localizationPath))
+            {
+                string localizationJson = File.ReadAllText(localizationPath, Encoding.UTF8);
+                languageManager.localizationDictionary = JsonUtility.FromJson<LocalizationDictionary>(localizationJson);
+            }
+            else
+            {
+                Debug.LogError("Localization file not found at: " + localizationPath);
+                languageManager.localizationDictionary = new LocalizationDictionary();
+            }
+        }
+
+        private void OnDestroy()
+        {
+            YandexGame.GetDataEvent -= OnDataLoaded;
         }
     }
 }

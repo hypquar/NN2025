@@ -1,51 +1,33 @@
 using System.IO;
 using UnityEngine;
-using YG;
 
 [CreateAssetMenu(fileName = "SettingsData", menuName = "NN2025/SettingsData")]
 public class SettingsData : ScriptableObject
 {
-    public string Resolution;
-    public bool IsWindowed;
-    public float musicVolume;
-    public float sfxVolume;
-    public string Language;
+    public string Resolution = "1920x1080";
+    public bool IsWindowed = true;
+    public float musicVolume = 0.7f;
+    public float sfxVolume = 0.7f;
+    public string Language = "ru";
 
-    //Метод для облачного сохранения через Яндекс Игры
-    public void SaveToCloud()
-    {
-        if (YandexGame.SDKEnabled)
-        {
-            YandexGame.savesData.userSettingsJson = JsonUtility.ToJson(this);
-            YandexGame.SaveProgress();
-        }
-    }
-
-    //Метод для загрузки из облака
-    public void LoadFromCloud()
-    {
-        if (YandexGame.SDKEnabled && !string.IsNullOrEmpty(YandexGame.savesData.userSettingsJson))
-        {
-            JsonUtility.FromJsonOverwrite(YandexGame.savesData.userSettingsJson, this);
-        }
-    }
-
-    // Сохранение в файл (оставлено для базовых настроек)
     public void SaveToJson(string path)
     {
-        string json = JsonUtility.ToJson(this);
-
         try
         {
-            File.WriteAllText(Path.Combine(path, $"{name}.json"), json);
+            string json = JsonUtility.ToJson(this);
+            string filePath = Path.Combine(path, $"{name}.json");
+
+            // Создаем директорию если не существует
+            Directory.CreateDirectory(path);
+
+            File.WriteAllText(filePath, json);
         }
         catch (System.Exception e)
         {
-            Debug.LogError($"Failed to save settings: {e.Message}");
+            Debug.LogError($"Failed to save settings to {path}: {e.Message}");
         }
     }
 
-    // Загрузка из файла (оставлено для базовых настроек)
     public void LoadToJson(string path)
     {
         string filePath = Path.Combine(path, $"{name}.json");
@@ -59,7 +41,7 @@ public class SettingsData : ScriptableObject
             }
             catch (System.Exception e)
             {
-                Debug.LogError($"Failed to load settings: {e.Message}");
+                Debug.LogError($"Failed to load settings from {path}: {e.Message}");
                 SetDefaultValues();
             }
         }
@@ -70,11 +52,10 @@ public class SettingsData : ScriptableObject
         }
     }
 
-    // Новый метод для установки значений по умолчанию
     public void SetDefaultValues()
     {
         Resolution = "1920x1080";
-        IsWindowed = false;
+        IsWindowed = true;
         musicVolume = 0.7f;
         sfxVolume = 0.7f;
         Language = "ru";

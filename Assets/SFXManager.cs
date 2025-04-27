@@ -20,7 +20,18 @@ public class SFXManager : MonoBehaviour, ISetting
 
     public void SaveSetting(SettingsData settingsData)
     {
+        if (settingsData == null)
+        {
+            Debug.LogError("SettingsData is null");
+            return;
+        }
+        if (volumeSlider == null)
+        {
+            Debug.LogError("Volume slider is not assigned");
+            return;
+        }
         settingsData.sfxVolume = volumeSlider.value;
+
     }
 
     private void Awake()

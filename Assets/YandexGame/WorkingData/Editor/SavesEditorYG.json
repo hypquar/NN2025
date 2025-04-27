@@ -1,0 +1,15 @@
+{
+    "idSave": 2,
+    "isFirstSession": false,
+    "language": "ru",
+    "promptDone": false,
+    "money": 1,
+    "newPlayerName": "Hello!",
+    "openLevels": [
+        false,
+        true,
+        false
+    ],
+    "userSettingsJson": "{\"Resolution\":\"1920x1080\",\"IsWindowed\":true,\"musicVolume\":0.699999988079071,\"sfxVolume\":0.699999988079071,\"Language\":\"ru\"}",
+    "userDataJson": "{\"lastFinishedLevelIndex\":0,\"currencyAmount\":0}"
+}
