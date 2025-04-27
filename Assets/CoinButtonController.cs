@@ -31,7 +31,7 @@ public class CoinButtonController : MonoBehaviour
             capturedData.button.onClick.AddListener(() =>
             {
                 Vector3 pos = capturedData.button.transform.position;
-                coinFX.PlayCoinAnimation(pos, capturedData.coinAmount);
+                coinFX.PlayCoinAnimation(capturedData.coinAmount, pos);
             });
         }
     }
