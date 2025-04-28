@@ -3618,10 +3618,10 @@ RectTransform:
   - {fileID: 496058730}
   m_Father: {fileID: 257582112}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 194.79736, y: -175}
-  m_SizeDelta: {x: 110, y: 110}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &460398336
 MonoBehaviour:
@@ -6025,6 +6025,7 @@ GameObject:
   m_Component:
   - component: {fileID: 709651971}
   - component: {fileID: 709651970}
+  - component: {fileID: 709651972}
   m_Layer: 0
   m_Name: Wallet
   m_TagString: Untagged
@@ -6060,6 +6061,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &709651972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 709651969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c3d0d47939154266b079c989e1d2473, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shopItems:
+  - buyButton: {fileID: 878427036}
+    priceText: {fileID: 1858481573}
+    itemPrice: 150
+  - buyButton: {fileID: 1152273363}
+    priceText: {fileID: 1931999217}
+    itemPrice: 1000
+  affordableColor: {r: 0, g: 1, b: 0, a: 1}
+  unaffordableColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &751616058
 GameObject:
   m_ObjectHideFlags: 0
@@ -7755,10 +7777,10 @@ RectTransform:
   - {fileID: 881527401}
   m_Father: {fileID: 257582112}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 194.79736, y: -55}
-  m_SizeDelta: {x: 110, y: 110}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &878427036
 MonoBehaviour:
@@ -9633,10 +9655,10 @@ RectTransform:
   - {fileID: 1074097761}
   m_Father: {fileID: 257582112}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 314.79736, y: -175}
-  m_SizeDelta: {x: 110, y: 110}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1131382564
 MonoBehaviour:
@@ -9725,10 +9747,10 @@ RectTransform:
   - {fileID: 2015561876}
   m_Father: {fileID: 257582112}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 314.79736, y: -55}
-  m_SizeDelta: {x: 110, y: 110}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1152273363
 MonoBehaviour:
@@ -11232,10 +11254,10 @@ RectTransform:
   - {fileID: 311046635}
   m_Father: {fileID: 257582112}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 74.79736, y: -175}
-  m_SizeDelta: {x: 110, y: 110}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1272470182
 MonoBehaviour:
@@ -13424,7 +13446,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1643016221
 RectTransform:
   m_ObjectHideFlags: 0
@@ -15224,10 +15246,10 @@ RectTransform:
   - {fileID: 558394334}
   m_Father: {fileID: 257582112}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 74.79736, y: -55}
-  m_SizeDelta: {x: 110, y: 110}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1840180470
 MonoBehaviour:
@@ -15368,7 +15390,7 @@ GameObject:
   - component: {fileID: 1858481574}
   - component: {fileID: 1858481573}
   m_Layer: 5
-  m_Name: PriceDisplay
+  m_Name: PriceDisplay150
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

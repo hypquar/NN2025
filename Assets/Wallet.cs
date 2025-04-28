@@ -1,31 +1,34 @@
 using UnityEngine;
 using TMPro;
-using Core; // подключаем чтобы использовать DataManager
+using System; // нужно для события
+using Core; 
 
 public class Wallet : MonoBehaviour
 {
-
-    public static Wallet Instance { get; private set; } // синглтон
+    public static Wallet Instance { get; private set; }
 
     [Header("UI")]
     [SerializeField] private TextMeshProUGUI coinText;
+
     private int currencyAmount;
 
+    // === Событие изменения баланса ===
+    public event Action OnCurrencyChanged;
 
     private void Awake()
     {
         if (Instance != null && Instance != this)
         {
-            Destroy(gameObject); // если кошелек уже существует — уничтожаем копию
+            Destroy(gameObject);
             return;
         }
         Instance = this;
-        DontDestroyOnLoad(gameObject); // опционально: сохранять кошелек при смене сцен
+        DontDestroyOnLoad(gameObject); // Чтобы не терять кошелек между сценами
     }
+
     private void Start()
     {
-
-        LoadCurrency(); // при старте загружаем из сохранения
+        LoadCurrency();
         UpdateUI();
     }
 
@@ -36,6 +39,7 @@ public class Wallet : MonoBehaviour
         currencyAmount += amount;
         SaveCurrency();
         UpdateUI();
+        OnCurrencyChanged?.Invoke(); // ВАЖНО: вызываем событие
     }
 
     public bool SpendCurrency(int amount)
@@ -47,6 +51,7 @@ public class Wallet : MonoBehaviour
             currencyAmount -= amount;
             SaveCurrency();
             UpdateUI();
+            OnCurrencyChanged?.Invoke(); // ВАЖНО: вызываем событие
             return true;
         }
         else
@@ -63,14 +68,12 @@ public class Wallet : MonoBehaviour
 
     private void SaveCurrency()
     {
-        // сохраняем в DataManager и сразу в YandexGame
         DataManager.Instance.userData.currencyAmount = currencyAmount;
         DataManager.Instance.SaveUserData(DataManager.Instance.userData);
     }
 
     private void LoadCurrency()
     {
-        // загружаем из DataManager
         currencyAmount = DataManager.Instance.userData.currencyAmount;
     }
 
