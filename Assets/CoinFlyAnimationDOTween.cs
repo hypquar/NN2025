@@ -1,10 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using TMPro;
 using DG.Tweening;
-using UnityEngine.UI;
 
+// Примечание: Не забудьте добавить ссылку на Wallet в инспекторе Unity, чтобы избежать ошибок во время выполнения.
+// Примечание: Убедитесь, что у вас есть префаб монеты и эффект вспышки, назначенные в инспекторе.
+// Примечание: Убедитесь, что у вас есть ссылка на AudioSource в инспекторе Unity.
+// Примечание: Убедитесь, что у вас есть ссылка на Canvas в инспекторе Unity.
+// Примечание: Убедитесь, что у вас есть ссылка на TextMeshProUGUI в инспекторе Unity.  
 public class CoinFlyAnimationDOTween : MonoBehaviour
 {
     [Header("Настройки монет")]
@@ -22,9 +24,18 @@ public class CoinFlyAnimationDOTween : MonoBehaviour
     public GameObject flashEffectPrefab;
     public AudioSource audioSource;
 
-    private int currentCoinCount = 0;
-
     public int maxCoinsToAnimate = 100;
+
+    [Header("Кошелек игрока")]
+    public Wallet wallet; // <-- добавляем ссылку на Wallet
+
+    private void Start()
+    {
+        if (wallet == null)
+        {
+            Debug.LogError("Не назначен Wallet в CoinFlyAnimationDOTween!");
+        }
+    }
 
     public void PlayCoinAnimation(int coinAmount, Vector3 startWorldPosition)
     {
@@ -43,11 +54,10 @@ public class CoinFlyAnimationDOTween : MonoBehaviour
             float delay = (spawnTimeWindow / coinsToAnimate) * i;
 
             accumulated += valuePerCoin;
-            int valueToAdd = Mathf.FloorToInt(accumulated); // только целая часть
+            int valueToAdd = Mathf.FloorToInt(accumulated);
 
-            accumulated -= valueToAdd; // оставим остаток на следующую монету
+            accumulated -= valueToAdd;
 
-            // если последняя монетка — прибавим остаток полностью
             if (i == coinsToAnimate - 1)
             {
                 valueToAdd += Mathf.RoundToInt(accumulated);
@@ -56,10 +66,6 @@ public class CoinFlyAnimationDOTween : MonoBehaviour
             SpawnCoinWithDelay(startWorldPosition, delay, valueToAdd);
         }
     }
-
-
-
-
 
     private void SpawnCoinWithDelay(Vector3 worldStartPos, float delay, int valueToAdd)
     {
@@ -86,8 +92,7 @@ public class CoinFlyAnimationDOTween : MonoBehaviour
         s.OnComplete(() =>
         {
             Destroy(coin);
-            currentCoinCount += valueToAdd;
-            coinDisplay.text = currentCoinCount.ToString();
+            wallet.AddCurrency(valueToAdd); // <-- Добавляем через кошелек
 
             if (flashEffectPrefab != null)
             {
@@ -97,8 +102,6 @@ public class CoinFlyAnimationDOTween : MonoBehaviour
         });
     }
 
-    // Метод для проигрывания звука
-
     private void PlayCoinSound()
     {
         if (audioSource != null && coinSound != null)
@@ -106,57 +109,4 @@ public class CoinFlyAnimationDOTween : MonoBehaviour
             audioSource.PlayOneShot(coinSound);
         }
     }
-
-
-
-
-    private IEnumerator SpawnCoinsRoutine(int amount, Vector3 worldStartPos)
-    {
-        float delayBetweenCoins = (totalAnimationDuration - coinFlyTime) / amount;
-        delayBetweenCoins = Mathf.Max(delayBetweenCoins, 0f);
-
-        for (int i = 0; i < amount; i++)
-        {
-            SpawnCoin(worldStartPos);
-            yield return new WaitForSeconds(delayBetweenCoins);
-        }
-    }
-
-    private void SpawnCoin(Vector3 worldStartPos)
-    {
-        GameObject coin = Instantiate(coinPrefab, canvas.transform);
-        RectTransform coinRT = coin.GetComponent<RectTransform>();
-        coinRT.sizeDelta = new Vector2(50f, 50f);
-
-        Vector2 screenPos = Camera.main.WorldToScreenPoint(worldStartPos);
-        RectTransformUtility.ScreenPointToLocalPointInRectangle(
-            canvas, screenPos, canvas.GetComponent<Canvas>().worldCamera, out Vector2 localPos);
-        coinRT.anchoredPosition = localPos;
-        coinRT.localScale = Vector3.zero;
-
-        coinRT.DOScale(1f, 0.2f).SetEase(Ease.OutBack);
-
-        Vector2 randomOffset = new Vector2(Random.Range(-50f, 50f), Random.Range(50f, 100f));
-        Vector2 midPoint = (coinTarget.anchoredPosition + localPos) / 2 + randomOffset;
-
-        Sequence s = DOTween.Sequence();
-        s.Append(coinRT.DOAnchorPos(midPoint, coinFlyTime / 2).SetEase(Ease.OutQuad));
-        s.Append(coinRT.DOAnchorPos(coinTarget.anchoredPosition, coinFlyTime / 2).SetEase(Ease.InQuad));
-        s.Join(coinRT.DOScale(0.3f, coinFlyTime).SetEase(Ease.InQuad));
-
-        s.OnComplete(() =>
-        {
-            Destroy(coin);
-            currentCoinCount += 1;
-            coinDisplay.text = currentCoinCount.ToString();
-
-            //  Вспышка
-            if (flashEffectPrefab != null)
-            {
-                GameObject flash = Instantiate(flashEffectPrefab, coinTarget);
-                Destroy(flash, 1f); // удалим вспышку через секунду
-            }
-        });
-    }
 }
-
