@@ -80,6 +80,38 @@ namespace Core
             }
         }
 
+        public void AddCurrency(int amount)
+        {
+            if (amount <= 0) return;
+
+            userData.currencyAmount += amount;
+            SaveUserData(userData); // сохраняем изменения
+        }
+
+        public bool SpendCurrency(int amount)
+        {
+            if (amount <= 0) return false;
+
+            if (userData.currencyAmount >= amount)
+            {
+                userData.currencyAmount -= amount;
+                SaveUserData(userData); // сохраняем изменения
+                return true;
+            }
+            else
+            {
+                Debug.LogWarning("Не хватает монет!");
+                return false;
+            }
+        }
+
+        public int GetCurrencyAmount()
+        {
+            return userData.currencyAmount;
+        }
+
+
+
         public void SaveUserSettings()
         {
             SaveSettingsData(userSettingsData);
@@ -135,7 +167,7 @@ namespace Core
 
         private void LoadLanguagesData()
         {
-            string localizationPath = Path.Combine(Application.streamingAssetsPath, "config", "Localization.json"); 
+            string localizationPath = Path.Combine(Application.streamingAssetsPath, "config", "Localization.json");
             if (File.Exists(localizationPath))
             {
                 string localizationJson = File.ReadAllText(localizationPath, Encoding.UTF8);

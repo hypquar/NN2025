@@ -31,6 +31,9 @@ public class ShopManager : MonoBehaviour
             }
         }
 
+
+
+
         if (Wallet.Instance != null)
         {
             Wallet.Instance.OnCurrencyChanged += UpdateAllItemsUI;
