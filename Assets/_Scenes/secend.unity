@@ -11301,8 +11301,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 643c69461f6c9ca41b4e5bb2bcd74354, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tweenCapacity: 1000
-  sequenceCapacity: 250
 --- !u!4 &1354325568
 Transform:
   m_ObjectHideFlags: 0
@@ -11853,6 +11851,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1416352100}
   m_CullTransparentMesh: 1
+--- !u!1 &1421083276
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1421083278}
+  - component: {fileID: 1421083277}
+  m_Layer: 0
+  m_Name: Wallet
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1421083277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1421083276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f866f683434d49a984acd80faf50ed0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coinText: {fileID: 1571504995}
+--- !u!4 &1421083278
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1421083276}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 22.771265, y: 9.6873, z: 21.30305}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1439695096
 GameObject:
   m_ObjectHideFlags: 0
@@ -17728,6 +17771,7 @@ MonoBehaviour:
   flashEffectPrefab: {fileID: 0}
   audioSource: {fileID: 636639063}
   maxCoinsToAnimate: 100
+  wallet: {fileID: 1421083277}
 --- !u!4 &2107585051
 Transform:
   m_ObjectHideFlags: 0
@@ -18067,3 +18111,4 @@ SceneRoots:
   - {fileID: 1057158629}
   - {fileID: 2107585051}
   - {fileID: 1354325568}
+  - {fileID: 1421083278}
