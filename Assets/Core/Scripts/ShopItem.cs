@@ -5,14 +5,7 @@ using System.Collections.Generic;
 
 public class ShopManager : MonoBehaviour
 {
-    [System.Serializable]
-    public class ShopItemData
-    {
-        public Button buyButton;       // Кнопка покупки
-        public TextMeshProUGUI priceText; // Текст цены
 
-        public int itemPrice;           // Цена товара
-    }
 
     [Header("Товары магазина")]
     [SerializeField] private List<ShopItemData> shopItems = new List<ShopItemData>();

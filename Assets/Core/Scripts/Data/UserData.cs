@@ -4,12 +4,12 @@ using UnityEngine;
 public class UserData : ScriptableObject
 {
     public int lastFinishedLevelIndex;
-    public int currencyAmount;
+    public int _currencyAmount;
 
     //метод сброса сохранений 
     public void ResetData()
     {
         lastFinishedLevelIndex = 0;
-        currencyAmount = 0;
+        _currencyAmount = 0;
     }
 }

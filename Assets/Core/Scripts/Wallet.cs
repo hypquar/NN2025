@@ -1,6 +1,6 @@
 using UnityEngine;
 using TMPro;
-using System; // нужно для события
+using System;
 using Core; 
 
 public class Wallet : MonoBehaviour
@@ -10,7 +10,7 @@ public class Wallet : MonoBehaviour
     [Header("UI")]
     [SerializeField] private TextMeshProUGUI coinText;
 
-    private int currencyAmount;
+    private int _currencyAmount;
 
     // === Событие изменения баланса ===
     public event Action OnCurrencyChanged;
@@ -30,13 +30,14 @@ public class Wallet : MonoBehaviour
     {
         LoadCurrency();
         UpdateUI();
+        OnCurrencyChanged.Invoke();
     }
 
     public void AddCurrency(int amount)
     {
         if (amount <= 0) return;
 
-        currencyAmount += amount;
+        _currencyAmount += amount;
         SaveCurrency();
         UpdateUI();
         OnCurrencyChanged?.Invoke(); // ВАЖНО: вызываем событие
@@ -46,9 +47,9 @@ public class Wallet : MonoBehaviour
     {
         if (amount <= 0) return false;
 
-        if (currencyAmount >= amount)
+        if (_currencyAmount >= amount)
         {
-            currencyAmount -= amount;
+            _currencyAmount -= amount;
             SaveCurrency();
             UpdateUI();
             OnCurrencyChanged?.Invoke(); // ВАЖНО: вызываем событие
@@ -63,25 +64,25 @@ public class Wallet : MonoBehaviour
 
     public int GetCurrencyAmount()
     {
-        return currencyAmount;
+        return _currencyAmount;
     }
 
     private void SaveCurrency()
     {
-        DataManager.Instance.userData.currencyAmount = currencyAmount;
+        DataManager.Instance.userData._currencyAmount = _currencyAmount;
         DataManager.Instance.SaveUserData(DataManager.Instance.userData);
     }
 
     private void LoadCurrency()
     {
-        currencyAmount = DataManager.Instance.userData.currencyAmount;
+        _currencyAmount = DataManager.Instance.userData._currencyAmount;
     }
 
     private void UpdateUI()
     {
         if (coinText != null)
         {
-            coinText.text = currencyAmount.ToString();
+            coinText.text = _currencyAmount.ToString();
         }
     }
 }
