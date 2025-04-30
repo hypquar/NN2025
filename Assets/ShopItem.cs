@@ -5,25 +5,17 @@ using System.Collections.Generic;
 
 public class ShopManager : MonoBehaviour
 {
-    [System.Serializable]
-    public class ShopItemData
-    {
-        public Button buyButton;       // Кнопка покупки
-        public TextMeshProUGUI priceText; // Текст цены
-
-        public int itemPrice;           // Цена товара
-    }
 
     [Header("Товары магазина")]
-    [SerializeField] private List<ShopItemData> shopItems = new List<ShopItemData>();
+    [SerializeField] private List<ShopItemData> _shopItems = new List<ShopItemData>();
 
     [Header("Цвета подсветки")]
-    [SerializeField] private Color affordableColor = Color.green;
-    [SerializeField] private Color unaffordableColor = Color.red;
+    [SerializeField] private Color _affordableColor = Color.green;
+    [SerializeField] private Color _unaffordableColor = Color.red;
 
     private void Start()
     {
-        foreach (var item in shopItems)
+        foreach (var item in _shopItems)
         {
             if (item.buyButton != null)
             {
@@ -36,7 +28,7 @@ public class ShopManager : MonoBehaviour
             Wallet.Instance.OnCurrencyChanged += UpdateAllItemsUI;
         }
 
-        UpdateAllItemsUI(); // обновим UI при старте
+        UpdateAllItemsUI(); 
     }
 
     private void OnDestroy()
@@ -49,7 +41,7 @@ public class ShopManager : MonoBehaviour
 
     private void UpdateAllItemsUI()
     {
-        foreach (var item in shopItems)
+        foreach (var item in _shopItems)
         {
             UpdateItemUI(item);
         }
@@ -63,11 +55,7 @@ public class ShopManager : MonoBehaviour
 
         if (item.priceText != null)
         {
-            item.priceText.color = canBuy ? affordableColor : unaffordableColor;
-        }
-
-        if (item.priceText != null)
-        {
+            item.priceText.color = canBuy ? _affordableColor : _unaffordableColor;
             item.priceText.text = item.itemPrice.ToString();
         }
     }
@@ -79,7 +67,7 @@ public class ShopManager : MonoBehaviour
         if (Wallet.Instance.SpendCurrency(item.itemPrice))
         {
             Debug.Log("Товар куплен за " + item.itemPrice + " монет!");
-            // Здесь можно добавить выдачу предмета игроку
+            // Здесь добавить выдачу предмета игроку
         }
         else
         {

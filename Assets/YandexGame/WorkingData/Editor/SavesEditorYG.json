@@ -1,5 +1,5 @@
 {
-    "idSave": 816,
+    "idSave": 2432,
     "isFirstSession": false,
     "language": "ru",
     "promptDone": false,
@@ -11,5 +11,5 @@
         false
     ],
     "userSettingsJson": "{\"Resolution\":\"1920x1080\",\"IsWindowed\":true,\"musicVolume\":0.699999988079071,\"sfxVolume\":0.699999988079071,\"Language\":\"ru\"}",
-    "userDataJson": "{\"lastFinishedLevelIndex\":0,\"currencyAmount\":1900}"
+    "userDataJson": "{\"lastFinishedLevelIndex\":0,\"currencyAmount\":0}"
 }
