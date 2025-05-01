@@ -23,14 +23,14 @@ public class Wallet : MonoBehaviour
             return;
         }
         Instance = this;
-        DontDestroyOnLoad(gameObject); // Чтобы не терять кошелек между сценами
+        DontDestroyOnLoad(gameObject); 
     }
 
     private void Start()
     {
         LoadCurrency();
         UpdateUI();
-        OnCurrencyChanged.Invoke();
+        OnCurrencyChanged?.Invoke();
     }
 
     public void AddCurrency(int amount)
@@ -40,7 +40,7 @@ public class Wallet : MonoBehaviour
         _currencyAmount += amount;
         SaveCurrency();
         UpdateUI();
-        OnCurrencyChanged?.Invoke(); // ВАЖНО: вызываем событие
+        OnCurrencyChanged?.Invoke(); 
     }
 
     public bool SpendCurrency(int amount)
@@ -52,7 +52,7 @@ public class Wallet : MonoBehaviour
             _currencyAmount -= amount;
             SaveCurrency();
             UpdateUI();
-            OnCurrencyChanged?.Invoke(); // ВАЖНО: вызываем событие
+            OnCurrencyChanged?.Invoke();
             return true;
         }
         else

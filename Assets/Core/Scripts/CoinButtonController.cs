@@ -11,28 +11,25 @@ public class BalanceButtonData
 
 public class CoinButtonController : MonoBehaviour
 {
-    [Header("Кнопки и их значения")]
+    [Header("Buttons Settings")]
     [SerializeField] private List<BalanceButtonData> balanceButtons;
 
-    [Header("Скрипт анимации монет")]
+    [Header("Coin Animation")]
     [SerializeField] private CoinFlyAnimationDOTween coinFX;
 
     private void Start()
     {
-        if (coinFX == null || balanceButtons == null || balanceButtons.Count == 0)
-        {
-            Debug.LogWarning("Не подключены кнопки или FX.");
-            return;
-        }
+        if (coinFX == null || balanceButtons == null) return;
 
         foreach (var data in balanceButtons)
         {
-            var capturedData = data; // замыкание
-            capturedData.button.onClick.AddListener(() =>
-            {
-                Vector3 pos = capturedData.button.transform.position;
-                coinFX.PlayCoinAnimation(capturedData.coinAmount, pos);
-            });
+            data.button.onClick.AddListener(() => OnButtonClick(data));
         }
+    }
+
+    private void OnButtonClick(BalanceButtonData data)
+    {
+        Vector3 worldPos = data.button.transform.position;
+        coinFX.PlayCoinAnimation(data.coinAmount, worldPos);
     }
 }

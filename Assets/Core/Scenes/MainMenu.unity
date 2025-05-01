@@ -2378,7 +2378,7 @@ Transform:
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -3.45, y: 1.03, z: -11.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3594,6 +3594,8 @@ GameObject:
   - component: {fileID: 460398335}
   - component: {fileID: 460398337}
   - component: {fileID: 460398336}
+  - component: {fileID: 460398339}
+  - component: {fileID: 460398338}
   m_Layer: 5
   m_Name: ItemPanel (4)
   m_TagString: Untagged
@@ -3666,7 +3668,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 504156401}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 460398338}
+        m_TargetAssemblyTypeName: MaterialButton, Assembly-CSharp
+        m_MethodName: OnButtonClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!222 &460398337
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3675,6 +3689,40 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 460398334}
   m_CullTransparentMesh: 1
+--- !u!114 &460398338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 460398334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ffb4d5f91b014546aa4bf1b8d100b96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  materialIndex: 0
+  wallManager: {fileID: 2026777388}
+  buttonText: {fileID: 429104487}
+  coinIcon: {fileID: 686982979}
+  priceColor: {r: 1, g: 1, b: 1, a: 1}
+  selectColor: {r: 1, g: 1, b: 1, a: 1}
+  selectedColor: {r: 0, g: 1, b: 0, a: 1}
+--- !u!114 &460398339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 460398334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12279d506f94f184db7509cd8a01cdb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buyButton: {fileID: 460398336}
+  priceText: {fileID: 429104487}
+  itemPrice: 0
 --- !u!1 &494467518
 GameObject:
   m_ObjectHideFlags: 0
@@ -5373,8 +5421,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 354fb936ba1c9a74fbe78d4e10954338, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  basicSettingsData: {fileID: 11400000, guid: 4298010964f77a64581fdba28c5dd8f4, type: 2}
-  userSettingsData: {fileID: 11400000, guid: 9136d111341070343afceb3b1b223121, type: 2}
+  basicSettingsData: {fileID: 11400000, guid: 26d98a3dc79d4754b8ff982ddb621261, type: 2}
+  userSettingsData: {fileID: 11400000, guid: 92a1f29aa4dc67e479cb48d873ff747c, type: 2}
 --- !u!114 &644909250
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5581,9 +5629,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acc19d25c7229c3419d7eca22807a30d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  userSettingsData: {fileID: 11400000, guid: 9136d111341070343afceb3b1b223121, type: 2}
-  baseSettingsData: {fileID: 11400000, guid: 4298010964f77a64581fdba28c5dd8f4, type: 2}
-  userData: {fileID: 11400000, guid: 2b4e052a37a4f174eb3e6b68af3777d6, type: 2}
+  userSettingsData: {fileID: 11400000, guid: 92a1f29aa4dc67e479cb48d873ff747c, type: 2}
+  baseSettingsData: {fileID: 11400000, guid: 26d98a3dc79d4754b8ff982ddb621261, type: 2}
+  userData: {fileID: 11400000, guid: 749990fb6e0295a4895086ace4b42ace, type: 2}
   languageManager: {fileID: 644909252}
 --- !u!4 &657386481
 Transform:
@@ -7731,6 +7779,8 @@ GameObject:
   - component: {fileID: 878427035}
   - component: {fileID: 878427037}
   - component: {fileID: 878427036}
+  - component: {fileID: 878427039}
+  - component: {fileID: 878427038}
   m_Layer: 5
   m_Name: ItemPanel (1)
   m_TagString: Untagged
@@ -7803,7 +7853,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1798256747}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 878427038}
+        m_TargetAssemblyTypeName: MaterialButton, Assembly-CSharp
+        m_MethodName: OnButtonClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!222 &878427037
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7812,6 +7874,40 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 878427034}
   m_CullTransparentMesh: 1
+--- !u!114 &878427038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 878427034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ffb4d5f91b014546aa4bf1b8d100b96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  materialIndex: 3
+  wallManager: {fileID: 2026777388}
+  buttonText: {fileID: 1858481573}
+  coinIcon: {fileID: 606712905}
+  priceColor: {r: 1, g: 1, b: 1, a: 1}
+  selectColor: {r: 1, g: 1, b: 1, a: 1}
+  selectedColor: {r: 0, g: 1, b: 0, a: 1}
+--- !u!114 &878427039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 878427034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12279d506f94f184db7509cd8a01cdb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buyButton: {fileID: 878427036}
+  priceText: {fileID: 1858481573}
+  itemPrice: 150
 --- !u!1 &881527400
 GameObject:
   m_ObjectHideFlags: 0
@@ -8981,6 +9077,67 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1074392117}
   m_CullTransparentMesh: 1
+--- !u!1001 &1085534096
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6054612290299732441, guid: d569ac08b4ba41346ad69a5ac95059da, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6054612290299732441, guid: d569ac08b4ba41346ad69a5ac95059da, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6054612290299732441, guid: d569ac08b4ba41346ad69a5ac95059da, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6054612290299732441, guid: d569ac08b4ba41346ad69a5ac95059da, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6054612290299732441, guid: d569ac08b4ba41346ad69a5ac95059da, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6054612290299732441, guid: d569ac08b4ba41346ad69a5ac95059da, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6054612290299732441, guid: d569ac08b4ba41346ad69a5ac95059da, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6054612290299732441, guid: d569ac08b4ba41346ad69a5ac95059da, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6054612290299732441, guid: d569ac08b4ba41346ad69a5ac95059da, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6054612290299732441, guid: d569ac08b4ba41346ad69a5ac95059da, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6194029373913061020, guid: d569ac08b4ba41346ad69a5ac95059da, type: 3}
+      propertyPath: m_Name
+      value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 6194029373913061020, guid: d569ac08b4ba41346ad69a5ac95059da, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d569ac08b4ba41346ad69a5ac95059da, type: 3}
 --- !u!1 &1115499827
 GameObject:
   m_ObjectHideFlags: 0
@@ -9609,6 +9766,8 @@ GameObject:
   - component: {fileID: 1131382563}
   - component: {fileID: 1131382565}
   - component: {fileID: 1131382564}
+  - component: {fileID: 1131382566}
+  - component: {fileID: 1131382567}
   m_Layer: 5
   m_Name: ItemPanel (5)
   m_TagString: Untagged
@@ -9681,7 +9840,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1796075897}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1131382567}
+        m_TargetAssemblyTypeName: MaterialButton, Assembly-CSharp
+        m_MethodName: OnButtonClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!222 &1131382565
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9690,6 +9861,40 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1131382562}
   m_CullTransparentMesh: 1
+--- !u!114 &1131382566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1131382562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12279d506f94f184db7509cd8a01cdb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buyButton: {fileID: 1131382564}
+  priceText: {fileID: 1006799127}
+  itemPrice: 0
+--- !u!114 &1131382567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1131382562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ffb4d5f91b014546aa4bf1b8d100b96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  materialIndex: 3
+  wallManager: {fileID: 2026777388}
+  buttonText: {fileID: 1006799127}
+  coinIcon: {fileID: 526898325}
+  priceColor: {r: 1, g: 1, b: 1, a: 1}
+  selectColor: {r: 1, g: 1, b: 1, a: 1}
+  selectedColor: {r: 0, g: 1, b: 0, a: 1}
 --- !u!1 &1152273361
 GameObject:
   m_ObjectHideFlags: 0
@@ -9701,6 +9906,8 @@ GameObject:
   - component: {fileID: 1152273362}
   - component: {fileID: 1152273364}
   - component: {fileID: 1152273363}
+  - component: {fileID: 1152273366}
+  - component: {fileID: 1152273365}
   m_Layer: 5
   m_Name: ItemPanel (2)
   m_TagString: Untagged
@@ -9773,7 +9980,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 142237120}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1152273365}
+        m_TargetAssemblyTypeName: MaterialButton, Assembly-CSharp
+        m_MethodName: OnButtonClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!222 &1152273364
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9782,6 +10001,40 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1152273361}
   m_CullTransparentMesh: 1
+--- !u!114 &1152273365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1152273361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ffb4d5f91b014546aa4bf1b8d100b96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  materialIndex: 2
+  wallManager: {fileID: 2026777388}
+  buttonText: {fileID: 1931999217}
+  coinIcon: {fileID: 136197974}
+  priceColor: {r: 1, g: 1, b: 1, a: 1}
+  selectColor: {r: 1, g: 1, b: 1, a: 1}
+  selectedColor: {r: 0, g: 1, b: 0, a: 1}
+--- !u!114 &1152273366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1152273361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12279d506f94f184db7509cd8a01cdb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buyButton: {fileID: 1152273363}
+  priceText: {fileID: 1931999217}
+  itemPrice: 1000
 --- !u!1 &1157925102
 GameObject:
   m_ObjectHideFlags: 0
@@ -11309,6 +11562,8 @@ GameObject:
   - component: {fileID: 1272470181}
   - component: {fileID: 1272470183}
   - component: {fileID: 1272470182}
+  - component: {fileID: 1272470185}
+  - component: {fileID: 1272470184}
   m_Layer: 5
   m_Name: ItemPanel (3)
   m_TagString: Untagged
@@ -11381,7 +11636,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1778142824}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1272470184}
+        m_TargetAssemblyTypeName: MaterialButton, Assembly-CSharp
+        m_MethodName: OnButtonClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!222 &1272470183
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11390,6 +11657,40 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1272470180}
   m_CullTransparentMesh: 1
+--- !u!114 &1272470184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1272470180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ffb4d5f91b014546aa4bf1b8d100b96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  materialIndex: 1
+  wallManager: {fileID: 2026777388}
+  buttonText: {fileID: 1786318820}
+  coinIcon: {fileID: 209489650}
+  priceColor: {r: 1, g: 1, b: 1, a: 1}
+  selectColor: {r: 1, g: 1, b: 1, a: 1}
+  selectedColor: {r: 0, g: 1, b: 0, a: 1}
+--- !u!114 &1272470185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1272470180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12279d506f94f184db7509cd8a01cdb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buyButton: {fileID: 1272470182}
+  priceText: {fileID: 1786318820}
+  itemPrice: 150
 --- !u!1 &1282598242
 GameObject:
   m_ObjectHideFlags: 0
@@ -13740,16 +14041,16 @@ Canvas:
   m_GameObject: {fileID: 1679969987}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 330585545}
-  m_PlaneDistance: 100
+  m_PlaneDistance: 1
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 1
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -15301,6 +15602,8 @@ GameObject:
   - component: {fileID: 1840180469}
   - component: {fileID: 1840180471}
   - component: {fileID: 1840180470}
+  - component: {fileID: 1840180473}
+  - component: {fileID: 1840180472}
   m_Layer: 5
   m_Name: ItemPanel
   m_TagString: Untagged
@@ -15373,7 +15676,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1771158407}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1840180472}
+        m_TargetAssemblyTypeName: MaterialButton, Assembly-CSharp
+        m_MethodName: OnButtonClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!222 &1840180471
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -15382,6 +15697,40 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1840180468}
   m_CullTransparentMesh: 1
+--- !u!114 &1840180472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1840180468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ffb4d5f91b014546aa4bf1b8d100b96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  materialIndex: 0
+  wallManager: {fileID: 2026777388}
+  buttonText: {fileID: 859238820}
+  coinIcon: {fileID: 1492070197}
+  priceColor: {r: 1, g: 1, b: 1, a: 1}
+  selectColor: {r: 1, g: 1, b: 1, a: 1}
+  selectedColor: {r: 0, g: 1, b: 0, a: 1}
+--- !u!114 &1840180473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1840180468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12279d506f94f184db7509cd8a01cdb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buyButton: {fileID: 1840180470}
+  priceText: {fileID: 859238820}
+  itemPrice: 0
 --- !u!1 &1857283502
 GameObject:
   m_ObjectHideFlags: 0
@@ -17154,6 +17503,85 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2024944757}
   m_CullTransparentMesh: 1
+--- !u!1 &2026777387
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2026777390}
+  - component: {fileID: 2026777389}
+  - component: {fileID: 2026777388}
+  m_Layer: 0
+  m_Name: ShopManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2026777388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2026777387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 334b08ea646e3fd4fbd0cb86ae050487, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  materialsData:
+  - material: {fileID: 2100000, guid: 3625dcf6884062046a42bc2c65d0dd3d, type: 2}
+    price: 0
+    name: "\u0441\u0438\u043D\u0438\u0439"
+  - material: {fileID: 2100000, guid: 6c2d22752c9751745a31be6336c23cd7, type: 2}
+    price: 0
+    name: "\u0437\u0435\u043B\u0435\u043D\u044B\u0439"
+  - material: {fileID: 2100000, guid: edadd9d593bce2e43b726ee39ceefe41, type: 2}
+    price: 1000
+    name: "\u0436\u0435\u043B\u0442\u044B\u0439"
+  - material: {fileID: 2100000, guid: 0d937da8220155b498cbcfc0320a1aed, type: 2}
+    price: 150
+    name: "\u0440\u043E\u0437\u043E\u0432\u044B\u0439"
+--- !u!114 &2026777389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2026777387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c3d0d47939154266b079c989e1d2473, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shopItems:
+  - {fileID: 1840180473}
+  - {fileID: 878427039}
+  - {fileID: 1152273366}
+  - {fileID: 1272470185}
+  - {fileID: 460398339}
+  - {fileID: 1131382566}
+  affordableColor: {r: 0, g: 1, b: 0, a: 1}
+  unaffordableColor: {r: 1, g: 0, b: 0, a: 1}
+--- !u!4 &2026777390
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2026777387}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2033168305
 GameObject:
   m_ObjectHideFlags: 0
@@ -18301,3 +18729,5 @@ SceneRoots:
   - {fileID: 2107585051}
   - {fileID: 709651971}
   - {fileID: 1272064965}
+  - {fileID: 2026777390}
+  - {fileID: 1085534096}
